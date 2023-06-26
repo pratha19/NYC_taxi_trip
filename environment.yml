@@ -1,0 +1,16 @@
+name: nyc_trip
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - bokeh==2.4.3
+  - geopandas==0.9.*
+  - matplotlib==3.6.*
+  - numpy==1.23.*
+  - pandas==1.5.*
+  - shapely==1.8.*
+  - pyproj==3.1.*
+  - seaborn==0.12.*
+  - pip
+  - pip:
+    - streamlit==1.20.*
