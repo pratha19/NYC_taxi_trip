@@ -18,7 +18,7 @@ This project involves predicting the yellow taxi trip duration between any two l
 * For my dev work, I prefer to edit the docs, scripts, etc. files in VSCode, and also run the .py files in the terminal. I use Jupyter lab only for jupyter notebooks.
 
 ### The project covers the following topics:
-[EDA](https://nbviewer.org/github/pratha19/NYC_taxi_trip_duration/blob/8e20d391f2dac97eff1dd69e789f96d59a51cca4/notebooks/NYC_EDA.ipynb)     
+[EDA](https://nbviewer.org/github/pratha19/NYC_taxi_trip/blob/pp_nyc_trip_blog_1_1/notebooks/NYC_EDA.ipynb#2)     
 - Raw Data import    
 - External data imports     
 - Data cleaning    
