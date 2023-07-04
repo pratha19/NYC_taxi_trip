@@ -22,7 +22,7 @@ This project involves predicting the yellow taxi trip duration between any two l
 - Raw Data import    
 - External data imports     
 - Data cleaning    
-- Visualizations
+- Visualizations, including interactive visualization
 - Data wranging based on EDA observations
 - Inferences  
 - Preparing data attributes for modeling
@@ -68,3 +68,11 @@ sending to the vendor because the vehicle did not have a connection to the serve
 
 - trip_distance - distance of the trip recorded in miles (was removed because this field won't be
 available for unseen trips/test data)
+
+### Bokeh Streamlit plots
+
+* To run the streamlit app locally, run the following command from your terminal:
+Note: if running for the first time, run with `READ_SAVED_FILE_DIRECTLY = False` in the `streamlit_maps.py` file. Else, switch it to `True` before running.
+```
+>  make stream_maps
+```

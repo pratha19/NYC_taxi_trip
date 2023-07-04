@@ -77,17 +77,17 @@ def loc_read_parquet_file(file_location: str) -> pd.DataFrame:
     return read_parquet_file(file_location)
 
 
-READ_SAVED_FILE_DIRECTLY = False # Instead of getting the data from the URL and preparing and processing it, get the stored file. Use True if not changing any raw data fetch query params. 
+READ_SAVED_FILE_DIRECTLY = True # Instead of getting the data from the URL and preparing and processing it, get the stored file. Use True if not changing any raw data fetch query params. 
 FETCH_IF_EXISTS = not READ_SAVED_FILE_DIRECTLY
 FINAL_FILE_LOCATION = 'data/processed/nyc_with_zones_streamlit.parquet' # Location to store to or read from the final processed file
 
 RAW_URL = "https://data.cityofnewyork.us/resource/uacg-pexx.csv?" # NYC TLC URL to fetch the yello taxi trips data
 QUERY = "$query= SELECT * WHERE pickup_longitude IS NOT NULL AND pickup_latitude IS NOT NULL" # Query for filtering the data
 MONTHS = [1, 2, 3, 4, 5, 6] # fetch taxi trips for these months in 2016. The exact pickup and dropoff lat/lon info is available only for these months
-LIMIT = 300_000 # number of trips to fetch randomly within each month
+LIMIT = 300_000 # number of trips to fetch randomly within each month -- I have limited this so that the data can stay on Github for Streamlit. 
 
 NYC_SQL_FILE_LOC = 'data/raw/nyc_streamlit_2016_raw_sql.parquet' # Location to store or read from the fetched raw data
-NYC_RAW_FILE_LOC = 'data/interim/1_nyc_streamlit_raw_cony.parquet' # Location to store or read from the prepared data (some processing and adding cols to raw data)
+NYC_RAW_FILE_LOC = 'data/interim/1_nyc_streamlit_raw_cony.parquet' # Location to store or read from the prepared data (some processing and adding features to raw data)
 TAXI_ZONES_FILE = 'data/external/taxi_zones_shape/taxi_zones.shp' # Location to read the NYC taxi zone shape data
 
 IS_GMAPS = False # If True, then plot on Google maps using Google Maps API. You need to add your API key in a file apikey.text. Else use tile_providers from bokeh.
