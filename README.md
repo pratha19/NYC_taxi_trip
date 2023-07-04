@@ -5,7 +5,7 @@ This project involves predicting the yellow taxi trip duration between any two l
     * Assuming you already have [VSCode](https://code.visualstudio.com/download) and [anaconda](https://www.anaconda.com/download) installed. If not, please find the links to install those first. If you don’t worry about storage space and do not want to install the basic dependencies yourself, you can download the Anaconda distribution, otherwise, just go with Miniconda. 
     * See the `environment.yml' file for a list of all dependencies. If you need an additional package to do additional work, please add it here. 
     * Create a new Conda environment using the `environment.yml` file. Add it to Jupyter kernel. And install Jupyter lab (you can also replace this with Jupyter notebook if you prefer that)
-    ```> conda env create -f environment.yml
+    ```> conda env create -f env.yml
     > conda activate <env-name>
     > python -m ipykernel install --user --name=<custom-kernel-name>
     > jupyter lab 
