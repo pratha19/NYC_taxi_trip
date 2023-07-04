@@ -77,7 +77,7 @@ def loc_read_parquet_file(file_location: str) -> pd.DataFrame:
     return read_parquet_file(file_location)
 
 
-READ_SAVED_FILE_DIRECTLY = False # Instead of getting the data from the URL and preparing and processing it, get the stored file. Use True if not changing any raw data fetch query params. 
+READ_SAVED_FILE_DIRECTLY = True # Instead of getting the data from the URL and preparing and processing it, get the stored file. Use True if not changing any raw data fetch query params. 
 FETCH_IF_EXISTS = not READ_SAVED_FILE_DIRECTLY
 FINAL_FILE_LOCATION = 'data/processed/nyc_with_zones_streamlit.parquet' # Location to store to or read from the final processed file
 
