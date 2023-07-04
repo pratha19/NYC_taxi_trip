@@ -130,5 +130,6 @@ dmypy.json
 *apikey.txt
 *.csv
 *.parquet
+!data/processed/nyc_with_zones_streamlit.parquet
 *.tmp
 .DS_Store
