@@ -73,7 +73,9 @@ class StreamlitMaps:
 
 
     def add_sidebar_select_zone(self, pickup_or_dropoff_ed: str, pickup_or_dropoff: str, show_all_zones_default: bool = True, 
-                                default_zones: list[str] = ['JFK Airport', 'LaGuardia Airport', 'Newark Airport']):
+                                default_zones: list[str] = ['JFK Airport', 'LaGuardia Airport', 'Newark Airport'], 
+                                all_zones_disabled: bool = False, max_selections: int = None
+                            ):
         """
         Add a streamlit sidebar to select from multiple taxi zones to focus on, or select all zones.
         """
@@ -82,13 +84,14 @@ class StreamlitMaps:
         unique_taxi_zones = sorted([zone_i if isinstance(zone_i, str) else 'Unknown' for zone_i in unique_taxi_zones])
 
         show_all_zones = st.sidebar.checkbox(label = f"Show all zones in NYC: {pickup_or_dropoff_ed}", 
-                                    value = show_all_zones_default)
+                                    value = show_all_zones_default, 
+                                    disabled = all_zones_disabled)
 
         default_zones = default_zones if(all(x in unique_taxi_zones for x in default_zones)) else [] # Avoiding a case where one of the defaults isn't present in the data
 
         if not show_all_zones:
             zone_name_list = st.sidebar.multiselect(f"Select {pickup_or_dropoff} taxi zones to focus on", options = unique_taxi_zones,
-                                            max_selections = None, default = default_zones)
+                                            max_selections = max_selections, default = default_zones) 
         else:
             zone_name_list = unique_taxi_zones
 
@@ -239,7 +242,9 @@ class StreamlitMaps:
         # Getting a list of the available taxi zones, for the user to select from 
         zone_name_list = self.add_sidebar_select_zone(pickup_or_dropoff_ed = '', pickup_or_dropoff = '', 
                                             show_all_zones_default = False, 
-                                            default_zones = ['JFK Airport', 'LaGuardia Airport', 'Newark Airport'])
+                                            default_zones = ['JFK Airport'], #'LaGuardia Airport', 'Newark Airport' # Changing to one zone default for cleaner starting plot
+                                            all_zones_disabled = True, max_selections = 10
+                                        )
 
         # Allow the user to change the size of the scatter points on the map
         size_tuple = self.add_sidebar_point_size()
