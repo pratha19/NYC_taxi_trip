@@ -579,7 +579,9 @@ def plot_cartmaps_streamlit(data: pd.DataFrame,
                         map_tile_type: bokeh.tile_providers = CARTODBPOSITRON,
                         nyc_long_limits: tuple = (-74.257159, -73.699215), 
                         nyc_lat_limits: tuple = (40.471021, 40.987326),
-                        color_column: str = 'trip_duration', size_column: float|str = 5.0,
+                        color_column: str = 'trip_duration', 
+                        lower_color_lim: float|None = None, upper_color_lim: float|None = None,
+                        size_column: float|str = 5.0,
                         width: int = 800, height: int = 700, fill_alpha: float = 1) -> bokeh.layouts:
         
     """
@@ -594,6 +596,8 @@ def plot_cartmaps_streamlit(data: pd.DataFrame,
         nyc_long_limits: x axis limits for both the left and right plots
         nyc_lat_limits: y axis limits for both the left and right plots
         color_column: column to use for assigning colors to the points
+        lower_color_lim: lower limit for the colorbar
+        upper_color_lim: upper limit for the color bar
         size_column: column used to determine the size of the scatter points. Can be constant scaler or any dataframe column.
         width: width of the plots
         height: height of the plots
@@ -623,9 +627,11 @@ def plot_cartmaps_streamlit(data: pd.DataFrame,
     )
 
     # Add color mapper for the color bar
-    color_mapper = LinearColorMapper(palette = "RdYlGn8", low = np.percentile(data[color_column], 1), 
-                                                        high = np.percentile(data[color_column], 99)
-                                )
+    lower_color_lim = np.percentile(data[color_column], 1) if lower_color_lim is None else lower_color_lim
+    upper_color_lim = np.percentile(data[color_column], 99) if upper_color_lim is None else upper_color_lim
+    color_mapper = LinearColorMapper(palette = "RdYlGn8", low = lower_color_lim,
+                                                        high = upper_color_lim,
+                )
 
     # CREATE THE PLOT
 

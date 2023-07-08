@@ -127,6 +127,9 @@ class StreamlitMaps:
         # Getting a list of the available taxi zones, for the user to select from 
         zone_name_list = self.add_sidebar_select_zone(pickup_or_dropoff_ed, pickup_or_dropoff)
 
+        # Allow the user to change the colorbar's lower and upper limit
+        lower_color_lim, upper_color_lim = self.add_sidebar_colorlim()
+
         # Filtering the data based on user selection
         print('Filtering the dataframe based on user selection...')
         df_to_plot = self.nyc[(self.nyc[pickup_or_dropoff].isin(zone_name_list)) \
@@ -160,6 +163,7 @@ class StreamlitMaps:
                                     nyc_long_limits = (-74.257159, -73.677215), #(-74.257159, -73.699215), 
                                     nyc_lat_limits = (40.471021, 40.987326), #(40.471021, 40.987326)
                                     color_column = 'trip_duration_minutes',
+                                    lower_color_lim = lower_color_lim, upper_color_lim = upper_color_lim,
                                     size_column = 6, 
                                     width = 700, height = 600
                                     )
